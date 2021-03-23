@@ -151,8 +151,7 @@ tester(f)
 
 Rewrite `f()` below in such a way that all your tests of Q5 pass. (And demonstrate that your tests pass!)
 ```{r linewidth=80}
-
-# You are given the following code that is meant to convert one single-character string into a numeric value: "a" maps to 0, "b" maps to 0.693, etc. In theory, it should work with upper- and lower-case letters, and should throw an exception if non-character input is provided, and should throw an exception if more than one string is input, and should issue a warning and only use the first character if the number of characters in the string is greater than 1.
+# my new, non-buggy f
 myF = function(letter) {
   if(typeof(letter) != "character") stop("The input must be a character.")
   if(length(letter) != 1) stop("The input must not be a list of strings")
