@@ -130,16 +130,18 @@ if ( require("testthat") == FALSE ) {
   install.packages("testthat",repos="https://cloud.r-project.org")
   library(testthat)
 }
-
-test_that(desc = "Error: f(\"a\") should == 0", expect_equal(f("a"), 0))
-test_that(desc = "Error: f(\"A\") should == 0", expect_equal(f("A"), 0))
-test_that(desc = "Error: f(1) should have thrown a non char input exception",
+tester <- function() {
+  test_that(desc = "Error: f(\"a\") should == 0", expect_equal(f("a"), 0))
+  test_that(desc = "Error: f(\"A\") should == 0", expect_equal(f("A"), 0))
+  test_that(desc = "Error: f(1) should have thrown a non char input exception",
          expect_error(f(1)))
-test_that(desc = "Error: f(list of strings) should throw an exception",
+  test_that(desc = "Error: f(list of strings) should throw an exception",
          expect_error(f(c("b", "b", "c"))))
-test_that(desc = "Error: no warning issued when using only the first char of a
+  test_that(desc = "Error: no warning issued when using only the first char of a
          string of length greater than 1",
          expect_warning(f("yo")))
+}
+tester()
 ```
 
 ## Question 6
