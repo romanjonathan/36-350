@@ -130,18 +130,18 @@ if ( require("testthat") == FALSE ) {
   install.packages("testthat",repos="https://cloud.r-project.org")
   library(testthat)
 }
-tester <- function() {
-  test_that(desc = "Error: f(\"a\") should == 0", expect_equal(f("a"), 0))
-  test_that(desc = "Error: f(\"A\") should == 0", expect_equal(f("A"), 0))
-  test_that(desc = "Error: f(1) should have thrown a non char input exception",
-         expect_error(f(1)))
-  test_that(desc = "Error: f(list of strings) should throw an exception",
-         expect_error(f(c("b", "b", "c"))))
+tester <- function(func) {
+  test_that(desc = "Error: func(\"a\") should == 0", expect_equal(func("a"), 0))
+  test_that(desc = "Error: func(\"A\") should == 0", expect_equal(func("A"), 0))
+  test_that(desc = "Error: func(1) should have thrown a non char input exception",
+         expect_error(func(1)))
+  test_that(desc = "Error: func(list of strings) should throw an exception",
+         expect_error(func(c("b", "b", "c"))))
   test_that(desc = "Error: no warning issued when using only the first char of a
          string of length greater than 1",
-         expect_warning(f("yo")))
+         expect_warning(func("yo")))
 }
-tester()
+tester(f)
 ```
 
 ## Question 6
@@ -151,8 +151,14 @@ tester()
 
 Rewrite `f()` below in such a way that all your tests of Q5 pass. (And demonstrate that your tests pass!)
 ```{r linewidth=80}
-f = function(letter) {
-  
-  return(log(which(letters==letter)))
+
+# You are given the following code that is meant to convert one single-character string into a numeric value: "a" maps to 0, "b" maps to 0.693, etc. In theory, it should work with upper- and lower-case letters, and should throw an exception if non-character input is provided, and should throw an exception if more than one string is input, and should issue a warning and only use the first character if the number of characters in the string is greater than 1.
+myF = function(letter) {
+  if(typeof(letter) != "character") stop("The input must be a character.")
+  if(length(letter) != 1) stop("The input must not be a list of strings")
+  if (nchar(letter) > 1) warning("The input character has length >1,
+                                      using only the first character")
+  return(log(which(letters==tolower(letter[1]))))
 }
+tester(myF)
 ```
