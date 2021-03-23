@@ -135,8 +135,8 @@ test_that(desc = "Error: f(\"a\") should == 0", expect_equal(f("a"), 0))
 test_that(desc = "Error: f(\"A\") should == 0", expect_equal(f("A"), 0))
 test_that(desc = "Error: f(1) should have thrown a non char input exception",
          expect_error(f(1)))
-test_that(desc = "Error: f(list of strings) should throw an error",
-         expect_error(f(c("a", "b", "c"))))
+test_that(desc = "Error: f(list of strings) should throw an exception",
+         expect_error(f(c("b", "b", "c"))))
 test_that(desc = "Error: no warning issued when using only the first char of a
          string of length greater than 1",
          expect_warning(f("yo")))
@@ -149,5 +149,8 @@ test_that(desc = "Error: no warning issued when using only the first char of a
 
 Rewrite `f()` below in such a way that all your tests of Q5 pass. (And demonstrate that your tests pass!)
 ```{r linewidth=80}
-# FILL ME IN
+f = function(letter) {
+  
+  return(log(which(letters==letter)))
+}
 ```
