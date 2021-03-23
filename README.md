@@ -2,3 +2,5 @@
 S6 R class
 
 editing from rstudio
+
+2nd edits
