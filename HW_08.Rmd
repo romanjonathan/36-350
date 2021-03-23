@@ -122,14 +122,24 @@ f = function(letter) {
   return(log(which(letters==letter)))
 }
 ```
+
 (Yeah, whoever gave this to you is a bit lazy.) As a dutiful member of the team, your first responsibility is to write a series of tests utilizing functions in the `testthat` that will determine whether or not this code is operating correctly, given the stated expectation of how it is to perform. Below, write at least five different test function calls, at least two of which should fail. (Don't use any one `testthat` function, like `expect_equal()`, more than twice.) They can include tests that you know will fail, based on some future expectation: for instance, you can test whether a certain input leads to a thrown exception (that test would fail currently). (Or whether that same input yields an error.) Then, when you improve the code in Q6, you can improve it in such a way that your now-known-to-fail test will pass the next time.
+
 ```{r error=TRUE,linewidth=80}
 if ( require("testthat") == FALSE ) {
   install.packages("testthat",repos="https://cloud.r-project.org")
   library(testthat)
 }
 
-# FILL ME IN
+test_that(desc = "Error: f(\"a\") should == 0", expect_equal(f("a"), 0))
+test_that(desc = "Error: f(\"A\") should == 0", expect_equal(f("A"), 0))
+test_that(desc = "Error: f(1) should have thrown a non char input exception",
+         expect_error(f(1)))
+test_that(desc = "Error: f(list of strings) should throw an error",
+         expect_error(f(c("a", "b", "c"))))
+test_that(desc = "Error: no warning issued when using only the first char of a
+         string of length greater than 1",
+         expect_warning(f("yo")))
 ```
 
 ## Question 6
