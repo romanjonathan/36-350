@@ -131,17 +131,21 @@ if ( require("testthat") == FALSE ) {
   library(testthat)
 }
 tester <- function(func) {
-  test_that(desc = "Error: func(\"a\") should == 0",
+  test_that(desc = "Error: test that lower-case letters work;
+            func(\"a\") should == 0",
             expect_equal(func("a"), 0))
-  test_that(desc = "Error: func(\"A\") should == 0",
+  test_that(desc = "Error: test that upper-case letters work;
+            func(\"A\") should == 0",
             expect_equal(func("A"), 0))
-  test_that(desc = "Error: func(1) should have thrown a non char input
-            exception",
+  test_that(desc = "Error: test for improper input (numeric);
+            func(1) should have thrown a non char input exception",
             expect_error(func(1)))
-  test_that(desc = "Error: func(list of strings) should throw an exception",
+  test_that(desc = "Error: test that the length of the input vector is 1;
+            func(list of strings) should throw an exception",
             expect_error(func(c("b", "b", "c"))))
-  test_that(desc = "Error: no warning issued when using only the first char of a
-            string of length greater than 1",
+  test_that(desc = "Error: test for string of length greater than 1;
+            no warning issued when using only the first char of a string of
+            length greater than 1",
             expect_warning(func("yo")))
 }
 
