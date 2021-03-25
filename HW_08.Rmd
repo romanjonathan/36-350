@@ -158,7 +158,7 @@ Rewrite `f()` below in such a way that all your tests of Q5 pass. (And demonstra
 # my new, non-buggy f
 myF = function(letter) {
   if(typeof(letter) != "character") stop("The input must be a character.")
-  if(length(letter) != 1) stop("The input must not be a list of strings")
+  if(length(letter) != 1) stop("The input must a single string, not a list")
   if (nchar(letter) > 1) warning("The input character has length >1,
                                       using only the first character")
   return(log(which(letters==tolower(letter[1]))))
